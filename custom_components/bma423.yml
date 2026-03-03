@@ -1,0 +1,17 @@
+sensor:
+  - platform: custom
+    lambda: |-
+      auto bma = new BMA423Component();
+      bma->set_i2c(id(i2c));
+      App.register_component(bma);
+      return {
+        bma->accel_x_sensor,
+        bma->accel_y_sensor,
+        bma->accel_z_sensor,
+        bma->step_counter_sensor
+      };
+    sensors:
+      - name: "BMA423 X"
+      - name: "BMA423 Y"
+      - name: "BMA423 Z"
+      - name: "BMA423 Steps"
